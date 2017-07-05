@@ -1,6 +1,6 @@
-# ChordDht
+# Elixir-Chord
 
-**TODO: Add description**
+**WIP**
 
 ## Installation
 
