@@ -2,6 +2,14 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
+config :chord_dht, ChordDht.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  database: "chord_dht_repo",
+  username: "postgres",
+  password: "Keita",
+  hostname: "localhost"
+
+config :chord_dht, ecto_repos: [ChordDht.Repo]
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
 # file won't be loaded nor affect the parent project. For this reason,
