@@ -5,6 +5,14 @@ use Mix.Config
 config :chord_dht, ChordDht.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "chord_dht_repo",
+  username: "user",
+  password: "pass",
+  hostname: "localhost"
+
+
+config :chord_dht, ChordDht.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  database: "chord_dht_repo",
   username: "postgres",
   password: "Keita",
   hostname: "localhost"

@@ -1,7 +1,7 @@
 defmodule ChordDht.Node do
   use Ecto.Schema
 
-  schema "node" do
+  schema "chord_dht" do
     field :name, :string
     field :ip, :string
     field :hash, :string
