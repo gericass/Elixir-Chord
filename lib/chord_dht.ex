@@ -32,9 +32,33 @@ defmodule ChordDht do
     Supervisor.start_link(children, opts)
   end
 
-  def ins() do
-    insert(%Node{name: "node1",ip: "12345",hash: "a3a8Dafq",successor: 123,predecessor: 456})
+  def hash(str) do
+    :crypto.hash(:sha256,str)
+      |> Base.encode16(case: :lower) 
+  end
+
+  def mklist(str), do: _mklist([str],str)
+
+  defp _mklist(list,_) when length(list)>=4 do
+    list
+  end
+
+  defp _mklist(list,str) when length(list)<4 do
+    head = hash(str)
+    _mklist([head|list],head)
+  end
+
+  def init(str) do
+    #str = "unko"
+    delete_all Node
+    
+    Enum.each(mklist(str),fn (hs) ->
+          insert(%Node{name: "node1",ip: "12345",hash: hs,successor: 123,predecessor: 456})
+        end
+    )
     
   end
+
+
 
 end
