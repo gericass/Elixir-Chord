@@ -5,7 +5,7 @@ defmodule ChordDht.Node do
     field :name, :string
     field :ip, :string
     field :hash, :string
-    field :successor, :integer
-    field :predecessor, :integer
+    field :successor, :string
+    field :predecessor, :string
   end
 end

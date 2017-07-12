@@ -32,33 +32,38 @@ defmodule ChordDht do
     Supervisor.start_link(children, opts)
   end
 
-  def hash(str) do
+  def makehash(str) do #ハッシュ計算を行う
     :crypto.hash(:sha256,str)
       |> Base.encode16(case: :lower) 
+      
   end
 
-  def mklist(str), do: _mklist([str],str)
-
-  defp _mklist(list,_) when length(list)>=4 do
-    list
+  def mklist(str) do
+    hashedstr = makehash(str)
+     _mklist([hashedstr],hashedstr) #与えられた引数を元にリストを作成
   end
 
+  defp _mklist(list,_) when length(list)>=4, do: list
+ 
   defp _mklist(list,str) when length(list)<4 do
-    head = hash(str)
+    head = makehash(str)
     _mklist([head|list],head)
   end
 
-  def init(str) do
-    #str = "unko"
+
+  def init(str) do #DBの初期化 実行はmix run -e 'ChordDht.init("moji")'
     delete_all Node
-    
-    Enum.each(mklist(str),fn (hs) ->
-          insert(%Node{name: "node1",ip: "12345",hash: hs,successor: 123,predecessor: 456})
-        end
+    strseed = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+    Enum.each(mklist(str),fn (hash) ->
+        nodename_list = String.codepoints(strseed)
+                        |> Enum.take_random(30)
+        nodename = Enum.join(nodename_list)
+        insert(%Node{name: nodename,ip: "12345",hash: hash,successor: "nil",predecessor: "nil"})
+
+      end
     )
-    
+
+
   end
-
-
-
 end
