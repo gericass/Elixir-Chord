@@ -63,7 +63,11 @@ defmodule ChordDht do
 
       end
     )
-
-
+    nd = Node |> all
+    Enum.each(nd,fn (n) ->
+      IO.puts n.name
+    end
+    )
+    IO.inspect nd
   end
 end
