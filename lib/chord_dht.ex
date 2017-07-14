@@ -35,7 +35,6 @@ defmodule ChordDht do
   def makehash(str) do #ハッシュ計算を行う
     :crypto.hash(:sha256,str)
       |> Base.encode16(case: :lower) 
-      
   end
 
   def mklist(str) do
@@ -50,24 +49,29 @@ defmodule ChordDht do
     _mklist([head|list],head)
   end
 
+  def random_string do #ランダムな文字列を生成
+    "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    |> String.codepoints
+    |> Enum.take_random(30)
+    |> Enum.join
+  end
 
   def init(str) do #DBの初期化 実行はmix run -e 'ChordDht.init("moji")'
     delete_all Node
-    strseed = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
     Enum.each(mklist(str),fn (hash) ->
-        nodename_list = String.codepoints(strseed)
-                        |> Enum.take_random(30)
-        nodename = Enum.join(nodename_list)
-        insert(%Node{name: nodename,ip: "12345",hash: hash,successor: "nil",predecessor: "nil"})
-
+        insert(%Node{name: random_string(),ip: "12345",hash: hash,successor: "nil",predecessor: "nil"})
       end
     )
+
     nd = Node |> all
-    Enum.each(nd,fn (n) ->
-      IO.puts n.name
+    sorted = Enum.sort(nd,&(&1.hash <= &2.hash)) #ノードの取得とhash値でのソート
+    Enum.each(sorted,fn (s)->
+      ChordDht.Node.changeset(s,%{ip: random_string()})
+      |> update
+      
     end
     )
-    IO.inspect nd
+    nd2 = Node |> all
+    IO.inspect nd2
   end
 end
