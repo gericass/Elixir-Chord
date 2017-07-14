@@ -1,7 +1,9 @@
 defmodule ChordDht do
   import Ecto.Query, except: [preload: 2]
   import ChordDht.Repo
+  import RandomString
   alias ChordDht.Node
+
 
   @moduledoc """
   Documentation for ChordDht.
@@ -49,28 +51,20 @@ defmodule ChordDht do
     _mklist([head|list],head)
   end
 
-  def random_string do #ランダムな文字列を生成
-    "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    |> String.codepoints
-    |> Enum.take_random(30)
-    |> Enum.join
-  end
-
   def init(str) do #DBの初期化 実行はmix run -e 'ChordDht.init("moji")'
     delete_all Node
     Enum.each(mklist(str),fn (hash) ->
-        insert(%Node{name: random_string(),ip: "12345",hash: hash,successor: "nil",predecessor: "nil"})
+        insert(%Node{name: randstr(),ip: "12345",hash: hash,successor: "nil",predecessor: "nil"})
       end
     )
-
     nd = Node |> all
     sorted = Enum.sort(nd,&(&1.hash <= &2.hash)) #ノードの取得とhash値でのソート
     Enum.each(sorted,fn (s)->
-      ChordDht.Node.changeset(s,%{ip: random_string()})
+      ChordDht.Node.changeset(s,%{ip: randstr()})
       |> update
-      
-    end
+      end
     )
+
     nd2 = Node |> all
     IO.inspect nd2
   end
