@@ -1,10 +1,6 @@
 defmodule RandomString do
-    def randstr do
-        "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        |> String.codepoints
-        |> Enum.take_random(1)
-        |> randstr_
-    end
+    def randstr, do: randstr_([])
+       
     defp randstr_(list) when length(list)<30 do
         char = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 |> String.codepoints
