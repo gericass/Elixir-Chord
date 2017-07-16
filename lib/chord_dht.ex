@@ -78,6 +78,8 @@ defmodule ChordDht do
       end
     )
     
+    
+
     nd2 = Node |> all
     IO.inspect nd2
   end
