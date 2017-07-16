@@ -78,7 +78,7 @@ defmodule ChordDht do
         end
       end
     )
-    recursion(1)
+    recursion([1])
     nd2 = Node |> all
     IO.inspect nd2
 
