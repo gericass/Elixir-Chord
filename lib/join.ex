@@ -4,7 +4,6 @@ defmodule Join do
   import RandomString
   alias ChordDht.Node
 
-
   def search_successor(node,suc_node) do
     IO.inspect node.hash < suc_node.hash
     cond do
@@ -42,7 +41,6 @@ defmodule Join do
   end
 
   def create_node do
-    IO.puts "yesssssssss"
     name = randstr()
     hash = ChordDht.makehash(name)
     node = %Node{name: name,ip: "12345",hash: hash,successor: "nil",predecessor: "nil"}
