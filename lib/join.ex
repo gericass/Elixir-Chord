@@ -5,7 +5,6 @@ defmodule Join do
   alias ChordDht.Node
 
   def search_successor(node,suc_node) do
-    IO.inspect node.hash < suc_node.hash
     cond do
         suc_node.predecessor < suc_node.hash && suc_node.hash < suc_node.successor -> #suc_nodeが円の開始、終端ノードではなかった場合
             if suc_node.hash < node.hash && node.hash <suc_node.successor do
