@@ -1,6 +1,7 @@
 defmodule ChordDht do
   import Ecto.Query, except: [preload: 2]
   import ChordDht.Repo
+  import Ecto.Adapters.SQL
   import RandomString
   import ResidentProcess
   alias ChordDht.Node
@@ -78,10 +79,9 @@ defmodule ChordDht do
         end
       end
     )
+
     recursion([1])
-    nd2 = Node |> all
-    IO.inspect nd2
 
-
+    
   end
 end

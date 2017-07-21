@@ -2,6 +2,7 @@ defmodule ResidentProcess do
   import Ecto.Query, except: [preload: 2]
   import ChordDht.Repo
   import Join
+  import Stabilize
   alias ChordDht.Node
 
   def recursion([1]) do
@@ -11,9 +12,17 @@ defmodule ResidentProcess do
     recursion([num])
   end
 
+  def stab(num) do
+    if num ==1 do
+      stabilize()
+    end
+  end
+
   def recursion([_]) do
     num = :rand.uniform(50000000)
+    num2 = :rand.uniform(1000000)
     #IO.puts num
+    stab(num2)
     recursion([num])
   end
 
