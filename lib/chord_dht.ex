@@ -53,9 +53,9 @@ defmodule ChordDht do
     _mklist([head|list],head)
   end
 
-  def init(str) do #DBの初期化 実行はmix run -e 'ChordDht.init("moji")'
+  def init do #DBの初期化 実行はmix run -e 'ChordDht.init("moji")'
     delete_all Node
-    Enum.each(mklist(str),fn (hash) -> #初期ノードを挿入
+    Enum.each(mklist("first"),fn (hash) -> #初期ノードを挿入
         insert(%Node{name: randstr(),ip: "12345",hash: hash,successor: "nil",predecessor: "nil"})
       end
     )

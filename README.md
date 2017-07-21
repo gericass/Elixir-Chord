@@ -3,20 +3,23 @@
 **WIP**
 
 **This program has some problems**
+
 ## DHT(Chord) Algorithm on Elixir
 
 ### Require 
+
 - PostgreSQL
 
 ### Usage
+
 `$ mix compile`
 
 then
 
 `$ mix run -e 'ChordDht.init'`
 
-
 ## Subject
+
 - Successor List
 - Finger Table
 
