@@ -4,8 +4,6 @@ defmodule Stabilize do
     import RandomString
     alias ChordDht.Node
 
-
-
     def stabilize do
         qry = "Select * from chord_dht order by random() LIMIT 1"
         res = Ecto.Adapters.SQL.query!(ChordDht.Repo, qry, []) 
@@ -17,11 +15,14 @@ defmodule Stabilize do
 
         node = get_by(Node,hash: node_hash) #node更新用
         
+
         if suc_node.predecessor <= node_hash do #自身が新しいノードだった場合
+            IO.puts "asdasd"
             ChordDht.Node.changeset(suc_node,%{predecessor: node_hash})
             |> update
         else #新しいノードが発見された場合
-            if suc_node.predecessor < node_suc && suc_node.predecessor != "nil" do
+            if suc_node.predecessor < node_suc do
+                IO.puts "ok"
                 ChordDht.Node.changeset(node,%{successor: suc_node.predecessor})
                 |> update
                 estimated_successor = get_by(Node,hash: suc_node.predecessor)
@@ -30,6 +31,7 @@ defmodule Stabilize do
                     |> update
                 end
             else
+                IO.puts "kuso"
                 ChordDht.Node.changeset(suc_node,%{predecessor: node_hash})
                 |> update
             end
