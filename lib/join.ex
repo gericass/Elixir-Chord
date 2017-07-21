@@ -44,7 +44,7 @@ defmodule Join do
   end
 
   def create_node do
-    if length(Node|>all)<30 do
+    if length(Node|>all)<100 do
        name = randstr()
        hash = ChordDht.makehash(name)
        node = %Node{name: name,ip: "12345",hash: hash,successor: "nil",predecessor: "nil"}
