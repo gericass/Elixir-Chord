@@ -6,7 +6,7 @@ defmodule ResidentProcess do
   alias ChordDht.Node
 
   def recursion([1]) do
-    num = :rand.uniform(50000000)
+    num = :rand.uniform(10000000)
     #IO.puts num
     create_node()
     recursion([num])
@@ -19,8 +19,8 @@ defmodule ResidentProcess do
   end
 
   def recursion([_]) do
-    num = :rand.uniform(50000000)
-    num2 = :rand.uniform(1000000)
+    num = :rand.uniform(10000000)
+    num2 = :rand.uniform(300000)
     #IO.puts num
     stab(num2)
     recursion([num])

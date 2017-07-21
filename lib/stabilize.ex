@@ -15,12 +15,23 @@ defmodule Stabilize do
 
         node = get_by(Node,hash: node_hash) #node更新用
         
-
-        if suc_node.predecessor <= node_hash do #自身が新しいノードだった場合
-            IO.puts "asdasd"
-            ChordDht.Node.changeset(suc_node,%{predecessor: node_hash})
-            |> update
-        else #新しいノードが発見された場合
+        cond do
+          suc_node.predecessor < node_hash -> #自身が新しいノードだった場合
+            if node_hash < node_suc do #自分が終端のノードではなかった場合
+                IO.puts "asdasd"
+                ChordDht.Node.changeset(suc_node,%{predecessor: node_hash})
+                |> update 
+            else
+                ChordDht.Node.changeset(node,%{successor: suc_node.predecessor})
+                |> update
+                estimated_successor = get_by(Node,hash: suc_node.predecessor)
+                if node_hash > estimated_successor.hash do
+                    ChordDht.Node.changeset(estimated_successor,%{predecessor: node_hash})
+                    |> update
+                end
+            end
+          suc_node.predecessor > node_hash ->
+           #新しいノードが発見された場合
             if suc_node.predecessor < node_suc do
                 IO.puts "ok"
                 ChordDht.Node.changeset(node,%{successor: suc_node.predecessor})
@@ -35,6 +46,10 @@ defmodule Stabilize do
                 ChordDht.Node.changeset(suc_node,%{predecessor: node_hash})
                 |> update
             end
+          suc_node.predecessor == node_hash ->
+            IO.puts "me"
         end
+
+
     end
 end
