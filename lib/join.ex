@@ -6,19 +6,20 @@ defmodule Join do
   alias ChordDht.Node
 
   def search_successor(node,suc_node) do
+    IO.inspect node
     cond do
         suc_node.predecessor == "nil" ->
             next = get_by(Node,hash: suc_node.successor)
             search_successor(node,next)
         suc_node.predecessor < suc_node.hash && suc_node.hash < suc_node.successor -> #suc_nodeが円の開始、終端ノードではなかった場合
             cond do
-               suc_node.hash < node.hash && node.hash <suc_node.successor ->
+                suc_node.hash < node.hash && node.hash <suc_node.successor ->
                    %Node{node|successor: suc_node.successor}#%Node{node|successor: suc_node.hash}
                    |> insert
-               suc_node.predecessor < node.hash && node.hash < suc_node.hash ->
+                suc_node.predecessor < node.hash && node.hash < suc_node.hash ->
                    %Node{node|successor: suc_node.hash}#%Node{node|successor: suc_node.hash}
                    |> insert
-               true -> 
+                true -> 
                    next = get_by(Node,hash: suc_node.successor) 
                    search_successor(node,next)
             end
@@ -30,17 +31,24 @@ defmodule Join do
                 suc_node.hash < node.hash && node.hash < suc_node.successor ->
                     %Node{node|successor: suc_node.successor}
                     |> insert
+                suc_node.predecessor < node.hash ->
+                    %Node{node|successor: suc_node.hash}
+                    |> insert
                 true ->
                     next = get_by(Node,hash: suc_node.successor)
                     search_successor(node,next)
             end
         suc_node.successor < suc_node.hash -> #suc_nodeが円の終端ノードだった場合
-            if node.hash > suc_node.hash do
-                %Node{node|successor: suc_node.successor}
-                |> insert
-            else 
-                next = get_by(Node,hash: suc_node.successor)
-                search_successor(node,next)
+            cond do
+                node.hash > suc_node.hash -> #終端に挿入
+                   %Node{node|successor: suc_node.successor}
+                   |> insert
+                suc_node.successor < node.hash -> #先頭に挿入
+                   %Node{node|successor: suc_node.successor}
+                   |> insert
+                true -> 
+                   next = get_by(Node,hash: suc_node.successor)
+                   search_successor(node,next)
             end
         true ->
             IO.inspect suc_node
@@ -48,7 +56,7 @@ defmodule Join do
   end
 
   def create_node do
-    if length(Node|>all)<100 do
+    if length(Node|>all)<10 do
        name = randstr()
        hash = ChordDht.makehash(name)
        node = %Node{name: name,ip: "12345",hash: hash,successor: "nil",predecessor: "nil"}

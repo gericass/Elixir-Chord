@@ -49,7 +49,5 @@ defmodule Stabilize do
           suc_node.predecessor == node_hash ->
             IO.puts "me"
         end
-
-
     end
 end
