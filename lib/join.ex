@@ -16,7 +16,7 @@ defmodule Join do
                    %Node{node|successor: suc_node.successor}#%Node{node|successor: suc_node.hash}
                    |> insert
                suc_node.predecessor < node.hash && node.hash < suc_node.hash ->
-                   %Node{node|successor: suc_node.node}#%Node{node|successor: suc_node.hash}
+                   %Node{node|successor: suc_node.hash}#%Node{node|successor: suc_node.hash}
                    |> insert
                true -> 
                    next = get_by(Node,hash: suc_node.successor) 
