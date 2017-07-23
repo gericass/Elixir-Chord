@@ -11,12 +11,16 @@ defmodule Join do
             next = get_by(Node,hash: suc_node.successor)
             search_successor(node,next)
         suc_node.predecessor < suc_node.hash && suc_node.hash < suc_node.successor -> #suc_nodeが円の開始、終端ノードではなかった場合
-            if suc_node.hash < node.hash && node.hash <suc_node.successor do
-                %Node{node|successor: suc_node.successor}#%Node{node|successor: suc_node.hash}
-                |> insert
-            else
-                next = get_by(Node,hash: suc_node.successor) 
-                search_successor(node,next)
+            cond do
+               suc_node.hash < node.hash && node.hash <suc_node.successor ->
+                   %Node{node|successor: suc_node.successor}#%Node{node|successor: suc_node.hash}
+                   |> insert
+               suc_node.predecessor < node.hash && node.hash < suc_node.hash ->
+                   %Node{node|successor: suc_node.node}#%Node{node|successor: suc_node.hash}
+                   |> insert
+               true -> 
+                   next = get_by(Node,hash: suc_node.successor) 
+                   search_successor(node,next)
             end
         suc_node.predecessor > suc_node.hash -> #suc_nodeが円の開始ノードだった場合
             cond do
