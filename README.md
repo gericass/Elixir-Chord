@@ -22,6 +22,7 @@ then
 
 - Successor List
 - Finger Table
+- Parallelize Stabilize and Join
 
 ## Installation
 
