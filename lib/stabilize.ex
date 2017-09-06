@@ -4,6 +4,8 @@ defmodule Stabilize do
     import RandomString
     alias ChordDht.Node
 
+
+    
     def stabilize do
         qry = "Select * from chord_dht order by random() LIMIT 1"
         res = Ecto.Adapters.SQL.query!(ChordDht.Repo, qry, []) 
@@ -49,5 +51,6 @@ defmodule Stabilize do
           suc_node.predecessor == node_hash ->
             IO.puts "me"
         end
+        
     end
 end

@@ -55,6 +55,7 @@ defmodule Join do
     end
   end
 
+  
   def create_node do
     if length(Node|>all)<10 do
        name = randstr()
