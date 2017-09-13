@@ -54,7 +54,6 @@ defmodule Join do
             IO.inspect suc_node
     end
   end
-
   
   def create_node do
     if length(Node|>all)<10 do
