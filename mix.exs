@@ -15,7 +15,7 @@ defmodule ChordDht.Mixfile do
   # Type "mix help compile.app" for more information
   def application do
     # Specify extra applications you'll use from Erlang/Elixir
-    [extra_applications: [:logger, :ecto, :postgrex],
+    [extra_applications: [:logger, :ecto, :mariaex],
      mod: {ChordDht,[]}]
   end
 
@@ -31,7 +31,7 @@ defmodule ChordDht.Mixfile do
 
   defp deps do
     [
-      {:postgrex, ">= 0.0.0"},
+      {:mariaex, "~> 0.8.2"},
       {:ecto, "~> 2.1"}
     ]
   end

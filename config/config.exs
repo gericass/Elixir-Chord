@@ -3,7 +3,7 @@
 use Mix.Config
 
 config :chord_dht, ChordDht.Repo,
-  adapter: Ecto.Adapters.Postgres,
+  adapter: Ecto.Adapters.MySQL,
   database: "chord_dht_repo",
   username: "user",
   password: "pass",
@@ -11,11 +11,12 @@ config :chord_dht, ChordDht.Repo,
 
 
 config :chord_dht, ChordDht.Repo,
-  adapter: Ecto.Adapters.Postgres,
+  adapter: Ecto.Adapters.MySQL,
   database: "chord_dht_repo",
-  username: "postgres",
-  password: "Keita",
-  hostname: "localhost"
+  username: "root",
+  password: "mysql",
+  hostname: "127.0.0.1",
+  port: "13306"
 
 config :chord_dht, ecto_repos: [ChordDht.Repo]
 # This configuration is loaded before any dependency and is restricted
