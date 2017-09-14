@@ -5,9 +5,14 @@ defmodule Stabilize do
     alias ChordDht.Node
 
 
+
+    def _stabilize do
+      IO.puts "_stabilize"
+      stabilize()
+    end
     
     def stabilize do
-        qry = "Select * from chord_dht order by random() LIMIT 1"
+        qry = "Select * from chord_dht order by rand() LIMIT 1"
         res = Ecto.Adapters.SQL.query!(ChordDht.Repo, qry, []) 
         node_hash = Enum.at(Enum.at(res.rows,0),3) #hash
         node_suc = Enum.at(Enum.at(res.rows,0),4) #successorのhash
@@ -51,6 +56,6 @@ defmodule Stabilize do
           suc_node.predecessor == node_hash ->
             IO.puts "me"
         end
-        
+        _stabilize()
     end
 end

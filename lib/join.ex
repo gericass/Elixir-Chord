@@ -54,6 +54,11 @@ defmodule Join do
             IO.inspect suc_node
     end
   end
+
+  def _create_node do
+    IO.puts "_create_node"
+    create_node()
+  end
   
   def create_node do
     if length(Node|>all)<10 do
@@ -63,5 +68,6 @@ defmodule Join do
        first_search_node = Node |> first |> one
        search_successor(node,first_search_node) 
     end
+    _create_node()
   end
 end
