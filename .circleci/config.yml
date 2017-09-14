@@ -20,4 +20,5 @@ jobs:
       # specify any bash command here prefixed with `run: `
       - run: mix deps.get
       - run: mix ecto.create
-      - run: mix test
+      - run: mix ecto.migrate
+      - run: mix run -e 'ChordDht.init'
