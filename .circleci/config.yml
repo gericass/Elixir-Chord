@@ -7,7 +7,14 @@ jobs:
     docker:
       # specify the version here
       - image: circleci/elixir:1.4
-      - image: circleci/mysql
+      - image: mysql:latest
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
+          MYSQL_HOST: 127.0.0.1
+          # https://github.com/VG-Tech-Dojo/treasure2017-group-a/blob/master/dbconfig.ci.yml
+          MYSQL_DATABASE: chord_dht_repo
+          MYSQL_ROOT_PASSWORD: mysql
+          MYSQL_ROOT_PORT: 13306
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
