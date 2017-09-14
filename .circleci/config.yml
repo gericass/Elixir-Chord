@@ -7,7 +7,7 @@ jobs:
     docker:
       # specify the version here
       - image: circleci/elixir:1.4
-      - image: mysql:latest
+      - image: circleci/mysql:5.7
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: true
           MYSQL_HOST: 127.0.0.1
