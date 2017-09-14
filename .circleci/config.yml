@@ -7,6 +7,7 @@ jobs:
     docker:
       # specify the version here
       - image: circleci/elixir:1.4
+      - image: circleci/mysql
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
