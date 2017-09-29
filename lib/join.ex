@@ -56,7 +56,6 @@ defmodule Join do
   end
 
   def _create_node do
-    IO.puts "_create_node"
     create_node()
   end
   
@@ -66,8 +65,8 @@ defmodule Join do
        hash = ChordDht.makehash(name)
        node = %Node{name: name,ip: "12345",hash: hash,successor: "nil",predecessor: "nil"}
        first_search_node = Node |> first |> one
-       search_successor(node,first_search_node) 
+       search_successor(node,first_search_node)
+       _create_node()
     end
-    _create_node()
   end
 end

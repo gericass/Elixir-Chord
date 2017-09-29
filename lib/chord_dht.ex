@@ -55,6 +55,10 @@ defmodule ChordDht do
     _mklist([head|list],head)
   end
 
+  defp _init do
+    _init()
+  end
+
   def init do #DBの初期化 実行はmix run -e 'ChordDht.init("moji")'
     delete_all Node
     Enum.each(mklist("first"),fn (hash) -> #初期ノードを挿入
@@ -85,6 +89,8 @@ defmodule ChordDht do
     #recursion([1])
     spawn(Join,:create_node,[])
     spawn(Stabilize,:stabilize,[])
-    
+
+    _init()
+
   end
 end
