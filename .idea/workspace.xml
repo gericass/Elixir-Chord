@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="33653251-07e2-47b0-9c03-28c34c04f751" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/chord_dht.ex" afterPath="$PROJECT_DIR$/lib/chord_dht.ex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/join.ex" afterPath="$PROJECT_DIR$/lib/join.ex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/resident_process.ex" afterPath="$PROJECT_DIR$/lib/resident_process.ex" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,7 +18,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="chord_dht.ex" pinned="false" current-in-tab="true">
+      <file leaf-file-name="chord_dht.ex" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/chord_dht.ex">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="495">
@@ -29,11 +28,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="resident_process.ex" pinned="false" current-in-tab="false">
+      <file leaf-file-name="resident_process.ex" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/resident_process.ex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="15">
+              <caret line="1" column="8" lean-forward="false" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -116,6 +115,7 @@
         <option value="$PROJECT_DIR$/.circleci/config.yml" />
         <option value="$PROJECT_DIR$/lib/join.ex" />
         <option value="$PROJECT_DIR$/lib/chord_dht.ex" />
+        <option value="$PROJECT_DIR$/lib/resident_process.ex" />
       </list>
     </option>
   </component>
@@ -293,12 +293,20 @@
       <workItem from="1505300220024" duration="7431000" />
       <workItem from="1505354241443" duration="6142000" />
       <workItem from="1505555827342" duration="16000" />
-      <workItem from="1506659419721" duration="1955000" />
+      <workItem from="1506659419721" duration="2003000" />
     </task>
+    <task id="LOCAL-00001" summary="fix: process">
+      <created>1506661738360</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1506661738360</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17417000" />
+    <option name="totallyTimeSpent" value="17465000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="0" />
@@ -337,6 +345,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix: process" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: process" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -594,14 +606,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/resident_process.ex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/join.ex">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
@@ -614,6 +618,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
           <caret line="89" column="31" lean-forward="true" selection-start-line="89" selection-start-column="31" selection-end-line="89" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/resident_process.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="8" lean-forward="false" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
           <folding />
         </state>
       </provider>

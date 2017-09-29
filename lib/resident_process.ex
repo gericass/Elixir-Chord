@@ -1,3 +1,5 @@
+
+# no use
 defmodule ResidentProcess do
   import Ecto.Query, except: [preload: 2]
   import ChordDht.Repo
