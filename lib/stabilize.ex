@@ -7,7 +7,6 @@ defmodule Stabilize do
 
 
     def _stabilize do
-      IO.puts "_stabilize"
       stabilize()
     end
     
