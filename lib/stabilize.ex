@@ -47,14 +47,18 @@ defmodule Stabilize do
                     ChordDht.Node.changeset(node,%{successor: suc_node.predecessor})
                     |> update
                     estimated_successor = get_by(Node,hash: suc_node.predecessor)
-                    ChordDht.Node.changeset(estimated_successor,%{predecessor: node_hash})
-                    |> update
+                    if suc_node.predecessor < node_hash do
+                      ChordDht.Node.changeset(estimated_successor,%{predecessor: node_hash})
+                      |> update  
+                    end                    
                   suc_node.predecessor > node_hash ->
                     ChordDht.Node.changeset(node,%{successor: suc_node.predecessor})
                     |> update
                     estimated_successor = get_by(Node,hash: suc_node.predecessor)
-                    ChordDht.Node.changeset(estimated_successor,%{predecessor: node_hash})
-                    |> update
+                    if suc_node.predecessor > node_hash do
+                      ChordDht.Node.changeset(estimated_successor,%{predecessor: node_hash})
+                      |> update  
+                    end                    
                   suc_node.predecessor < node_hash && suc_node.hash < suc_node.predecessor ->
                     ChordDht.Node.changeset(suc_node,%{predecessor: node_hash})
                     |> update

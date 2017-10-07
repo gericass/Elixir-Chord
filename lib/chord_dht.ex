@@ -88,7 +88,7 @@ defmodule ChordDht do
 
     #recursion([1])
     spawn(Join,:create_node,[])
-    spawn(Stabilize,:stabilize,[])
+    #spawn(Stabilize,:stabilize,[])
 
     _init()
 
