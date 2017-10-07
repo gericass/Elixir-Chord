@@ -3,7 +3,6 @@ defmodule ChordDht do
   import ChordDht.Repo
   import Ecto.Adapters.SQL
   import RandomString
-  import ResidentProcess
   import Join
   import Stabilize
   alias ChordDht.Node
@@ -88,7 +87,7 @@ defmodule ChordDht do
 
     #recursion([1])
     spawn(Join,:create_node,[])
-    #spawn(Stabilize,:stabilize,[])
+    spawn(Stabilize,:stabilize,[])
 
     _init()
 
