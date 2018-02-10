@@ -1,9 +1,5 @@
 # Elixir-Chord
 
-**WIP**
-
-**This program has some problems**
-
 ## DHT(Chord) Algorithm on Elixir
 
 ### Require 
